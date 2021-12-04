@@ -113,7 +113,7 @@ const USER_DATA = {
     },
     date() {
         const date = new Date();
-        console.log(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes());
+        
         return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes();
         
     } 
