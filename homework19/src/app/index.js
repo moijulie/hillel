@@ -16,11 +16,15 @@ let login = document.getElementById("login");
 checkCookie();
 
 login.addEventListener('click', (event) => {
+    
+    
     if (email.value === ADMIN_EMAIL && password.value === ADMIN_PASSWORD) {
         if (rememberMe.checked) {
             setCookie("email", email.value, 30);
         }
-        renderUserInfo(USER_INFO);
+        renderUserInfo(email.value);
+    } else {
+        alert("Email or password are incorrect");
     }
 });
 
@@ -54,16 +58,16 @@ function getCookie(cookieName) {
 function checkCookie() {
     let user = getCookie("email");
     if (user != "") {
-        renderUserInfo(USER_INFO);
+        renderUserInfo(user);
     }
 }
 
 
-function renderUserInfo(user) {
+function renderUserInfo(email) {
+    
     document.body.innerHTML = `
-  <h2>User Info</h2>
   <p>
-  	email: <span>${email.value}</span>
+  	email: <span>${email}</span>
   </p>
   `
 }
