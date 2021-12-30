@@ -1,9 +1,3 @@
-function getRandom(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 const createElement = (el, { props = {}, className, children = [] } = {}) => {
   let element;
 
@@ -42,161 +36,27 @@ const createElement = (el, { props = {}, className, children = [] } = {}) => {
   return element;
 };
 
+function getRandom(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 const mainSection = () => {
+  const elements = [];
+  for (let index = 0; index < 25; index++) {
+    const el = createElement("div", {
+      className: "field__item",
+      props: {
+        "data-type": `${getRandom(0, 1)}`,
+      },
+    });
+    elements.push(el);
+  }
+
   return createElement("div", {
     className: "field",
-    children: [
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-      createElement("div", {
-        className: "field__item",
-        props: {
-          "data-type": `${getRandom(0, 1)}`,
-        },
-      }),
-    ],
+    children: elements,
   });
 };
 
