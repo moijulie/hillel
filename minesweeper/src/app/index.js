@@ -42,7 +42,7 @@ const createElement = (el, { props = {}, className, children = [] } = {}) => {
   return element;
 };
 
-const main = () => {
+const mainSection = () => {
   return createElement("div", {
     className: "field",
     children: [
@@ -201,8 +201,7 @@ const main = () => {
 };
 
 const root = document.getElementById("root");
-const mainSection = main();
-root.append(mainSection);
+root.append(mainSection());
 
 const fieldItem = document.querySelectorAll(".field__item");
 const inform = document.getElementById("informer");
@@ -250,7 +249,7 @@ const handleClick = (event) => {
 
 const handleRestart = (event) => {
   if (event.target === button) {
-    root.replaceChildren(mainSection);
+    root.replaceChildren(mainSection());
     messageBang.hidden = true;
     messageWin.hidden = true;
     button.hidden = true;
