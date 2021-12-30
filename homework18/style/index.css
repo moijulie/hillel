@@ -1,0 +1,6 @@
+label {
+    margin-bottom: 10px;
+}
+.check, label, label>span {
+    display: block;
+}
