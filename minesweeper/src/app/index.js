@@ -42,7 +42,7 @@ const createElement = (el, { props = {}, className, children = [] } = {}) => {
   return element;
 };
 
-const main = () => {
+const mainSection = () => {
   return createElement("div", {
     className: "field",
     children: [
@@ -201,7 +201,7 @@ const main = () => {
 };
 
 const root = document.getElementById("root");
-root.append(main());
+root.append(mainSection());
 
 const fieldItem = document.querySelectorAll(".field__item");
 const inform = document.getElementById("informer");
@@ -227,7 +227,7 @@ for (const elem of fieldItem) {
 const handleClick = (event) => {
   if (event.target.dataset.type === "1") {
     event.target.dataset.type = 3;
-    root.hidden = true;
+    root.style.pointerEvents = "none";
 
     button.hidden = false;
     messageBang.classList.add("message--failed");
@@ -249,7 +249,8 @@ const handleClick = (event) => {
 
 const handleRestart = (event) => {
   if (event.target === button) {
-    root.replaceChildren(main());
+    root.replaceChildren(mainSection());
+    root.style.pointerEvents = "auto";
     messageBang.hidden = true;
     messageWin.hidden = true;
     button.hidden = true;
