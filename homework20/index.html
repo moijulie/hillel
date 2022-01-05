@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 20</title>
+    <script defer src="./app/index.js"></script>
+    <link rel="stylesheet" href="./styles/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Licorice&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="clock">
+        <ul>
+            <li class="hour"></li> <li class="colon">:</li>
+            <li class="minute"></li> <li class="colon">:</li>
+            <li class="second"></li>
+        </ul>
+        <button class="setAlarmBtn">SET ALARM</button>
+    </div>
+    <div class="alarmClock" hidden>
+        <input type="number" max="23" min="00" id="setHour" required>
+        <input type="number" max="59" min="00" id="setMin" required>  
+        <div>
+            <span>Repeat everyday</span>
+            <input type="checkbox" id="check"> 
+        </div>
+        <button class="saveAlarmBtn">Save alarm</button>   
+    </div>
+    <div class="showResult" hidden></div>
+</body>
+
+</html>
