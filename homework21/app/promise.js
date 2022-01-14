@@ -91,17 +91,14 @@ const getCheckoutsForUserAsPromise = (userId) => {
         })
         .then((finalOrder) => {
           return getProducts().then((items) => {
-            for (const el of finalOrder) {
-              let checkout = el.checkout;
-              const cart = checkout.slice();
-              checkout.splice(0, 2);
-              for (const elem of cart) {
-                const resultOrder = items.filter((item) => item.id === elem);
+            const mappedOrder = finalOrder.map((order) => {
+              order.checkout = order.checkout.map((productId) => {
+                return getProduct.find((product) => product.id === productId);
+              });
+              return order;
+            });
 
-                checkout.push(resultOrder[0]);
-              }
-            }
-            return finalOrder;
+            return mappedOrder;
           });
         })
     )

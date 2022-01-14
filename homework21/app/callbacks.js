@@ -61,6 +61,7 @@ const getCheckoutsForUser = (userId, callback) => {
       return;
     }
     const user = users.find((user) => user.id === userId);
+    console.log(user);
     if (!user) {
       callback(new Error("User is not found"));
 
@@ -73,29 +74,29 @@ const getCheckoutsForUser = (userId, callback) => {
         return;
       }
       const finalOrder = orders.filter((order) => order.userId === user.id);
-      for (const el of finalOrder) {
-        let checkout = el.checkout;
-        const cart = checkout.slice();
-        checkout.splice(0, 2);
-        for (const elem of cart) {
-          getProducts((err, order) => {
-            if (err) {
-              callback(err);
-
-              return;
-            }
-            const resultOrder = order.filter((chosen) => chosen.id === elem);
-            checkout.push(resultOrder[0]);
-          });
-        }
-      }
-
       if (finalOrder.length === 0) {
         callback(new Error("User has not added any orders yet"));
 
         return;
       }
-      callback(null, finalOrder);
+
+      getProducts((err, products) => {
+        if (err) {
+          callback(err);
+
+          return;
+        }
+
+        const mappedOrder = finalOrder.map((order) => {
+          order.checkout = order.checkout.map((productId) => {
+            return products.find((product) => product.id === productId);
+          });
+          return order;
+        });
+        console.log(mappedOrder);
+
+        callback(null, mappedOrder);
+      });
     });
   });
 };

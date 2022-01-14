@@ -71,28 +71,27 @@ const getOrders = () => {
 
 const getCheckoutsForUserAsPseudoSync = async (userId) => {
   const getUser = await getUsers();
-  const getOrder = await getOrders();
+
   const user = getUser.find((getUser) => getUser.id === userId);
+  if (!user) {
+    throw new Error("User is not found");
+  }
+  const getOrder = await getOrders();
   const finalOrder = getOrder.filter((getOrder) => getOrder.userId === userId);
 
   if (finalOrder.length === 0) {
     throw new Error("User has not added any orders yet");
   }
-  if (!user) {
-    throw new Error("User is not found");
-  }
+
   const getProduct = await getProducts();
-  for (const el of finalOrder) {
-    let checkout = el.checkout;
-    const cart = checkout.slice();
-    checkout.splice(0, 2);
-    for (const elem of cart) {
-      const resultOrder = getProduct.filter(
-        (finalOrder) => finalOrder.id === elem
-      );
-      checkout.push(resultOrder[0]);
-    }
-  }
-  return finalOrder;
+
+  const mappedOrder = finalOrder.map((order) => {
+    order.checkout = order.checkout.map((productId) => {
+      return getProduct.find((product) => product.id === productId);
+    });
+    return order;
+  });
+
+  return mappedOrder;
 };
 getCheckoutsForUserAsPseudoSync(1).then(console.log).catch(console.error);
